@@ -1,90 +1,269 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Interactive Selection</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <style>
-    .selected{ background: var(--stroke); color: var(--bg); }
-  </style>
-</head>
-<body>
+/* ==============
+   Global styles
+================= */
+:root {
+  --bg: #f7f8fa;
+  --card: #fff;
+  --text: #222;
+  --accent: #007bff;
+  --stroke: #d1d5db;
+  --transition: 0.3s ease;
+}
 
-  <!-- ... предыдущие страницы ... -->
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
 
-  <!-- Шестая страница: Summary -->
-  <main id="page6" class="container" role="main" style="display:none;">
-    <div class="status">
-      <div class="dot">1</div>
-      <div class="dot">2</div>
-      <div class="dot">3</div>
-      <div class="dot">4</div>
-      <div class="dot">5</div>
-      <div class="dot active">6</div>
-    </div>
+body {
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 40px 20px;
+}
 
-    <h1>Summary</h1>
+/* ==============
+   Container
+================= */
+.container {
+  width: 100%;
+  max-width: 420px;
+  background: var(--card);
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  padding: 32px 24px 40px;
+  position: relative;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
 
-    <section class="summary-grid">
-      <!-- Здесь можно динамически показать выбранные элементы -->
-      <div class="summary-card">Style: <span id="summary-style"></span></div>
-      <div class="summary-card">Ethnicity: <span id="summary-ethnicity"></span></div>
-      <div class="summary-card">Body Type: <span id="summary-body"></span></div>
-      <div class="summary-card">Breast Size: <span id="summary-breast"></span></div>
-      <div class="summary-card">Butt Size: <span id="summary-butt"></span></div>
-      <div class="summary-card">Hair Style: <span id="summary-hair-style"></span></div>
-      <div class="summary-card">Hair Color: <span id="summary-hair-color"></span></div>
-      <div class="summary-card">Eye Color: <span id="summary-eye"></span></div>
-      <div class="summary-card">Voice: <span id="summary-voice"></span></div>
-      <div class="summary-card">Relationship: <span id="summary-relationship"></span></div>
-    </section>
+.container.hidden {
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  position: absolute;
+}
 
-    <div class="buttons">
-      <button class="nav-button" id="prev6Btn">Previous</button>
-      <button class="nav-button" id="finalBtn">Bring My AI to Live</button>
-    </div>
-  </main>
+/* ==============
+   Status Bar
+================= */
+.status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
 
-  <script>
-    function makeSelectable(sectionSelector){
-      const section = document.querySelector(sectionSelector);
-      if(!section) return;
-      section.querySelectorAll('.selection-card, .ethnicity-card, .card').forEach(el=>{
-        el.addEventListener('click', ()=>{
-          section.querySelectorAll('.selection-card, .ethnicity-card, .card').forEach(e=>e.classList.remove('selected'));
-          el.classList.add('selected');
-        });
-      });
-    }
+.dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--stroke);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #777;
+  transition: all var(--transition);
+}
 
-    // Выделение элементов на всех страницах
-    makeSelectable('#page1 .cards');
-    makeSelectable('#page2 .ethnicity-options');
-    document.querySelectorAll('#page3 .selection-grid').forEach((_,i)=>makeSelectable(`#page3 .selection-grid:nth-of-type(${i+1})`));
-    document.querySelectorAll('#page4 .selection-grid').forEach((_,i)=>makeSelectable(`#page4 .selection-grid:nth-of-type(${i+1})`));
-    document.querySelectorAll('#page5 .selection-grid').forEach((_,i)=>makeSelectable(`#page5 .selection-grid:nth-of-type(${i+1})`));
+.dot.active {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+  transform: scale(1.1);
+}
 
-    // Навигация
-    document.querySelectorAll('a[href^="#page2"]').forEach(link=>{
-      link.addEventListener('click', e=>{
-        e.preventDefault();
-        document.getElementById('page1').style.display='none';
-        document.getElementById('page2').style.display='flex';
-      });
-    });
-    document.getElementById('prevBtn').addEventListener('click',()=>{document.getElementById('page2').style.display='none';document.getElementById('page1').style.display='flex';});
-    document.getElementById('nextBtn').addEventListener('click',()=>{document.getElementById('page2').style.display='none';document.getElementById('page3').style.display='flex';});
-    document.getElementById('prev3Btn').addEventListener('click',()=>{document.getElementById('page3').style.display='none';document.getElementById('page2').style.display='flex';});
-    document.getElementById('next3Btn').addEventListener('click',()=>{document.getElementById('page3').style.display='none';document.getElementById('page4').style.display='flex';});
-    document.getElementById('prev4Btn').addEventListener('click',()=>{document.getElementById('page4').style.display='none';document.getElementById('page3').style.display='flex';});
-    document.getElementById('next4Btn').addEventListener('click',()=>{document.getElementById('page4').style.display='none';document.getElementById('page5').style.display='flex';});
-    document.getElementById('prev5Btn').addEventListener('click',()=>{document.getElementById('page5').style.display='none';document.getElementById('page4').style.display='flex';});
-    document.getElementById('next5Btn').addEventListener('click',()=>{document.getElementById('page5').style.display='none';document.getElementById('page6').style.display='flex';});
-    document.getElementById('prev6Btn').addEventListener('click',()=>{document.getElementById('page6').style.display='none';document.getElementById('page5').style.display='flex';});
-    document.getElementById('finalBtn').addEventListener('click',()=>{alert('AI activated!');});
-  </script>
+/* ==============
+   Headings
+================= */
+h1 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 16px 0 14px;
+  text-align: center;
+}
 
-</body>
-</html>
+/* ==============
+   Cards
+================= */
+.cards,
+.grid,
+.list-vertical {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.card {
+  background: var(--card);
+  border: 2px solid var(--stroke);
+  border-radius: 16px;
+  cursor: pointer;
+  text-align: center;
+  transition: all var(--transition);
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
+}
+
+.card.selected {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+}
+
+.square {
+  width: 100px;
+  height: 100px;
+}
+
+.rect {
+  width: calc(50% - 8px);
+  height: 80px;
+}
+
+.thin {
+  width: 100%;
+  height: 60px;
+}
+
+/* ==============
+   Pills (labels)
+================= */
+.pill {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.pill.small {
+  font-size: 14px;
+}
+
+/* ==============
+   Slider (age)
+================= */
+.slider-section {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.slider-section label {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+input[type="range"] {
+  width: 100%;
+  cursor: pointer;
+}
+
+.age-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-top: 6px;
+  color: #666;
+}
+
+/* ==============
+   Buttons
+================= */
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.nav-button {
+  flex: 1;
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  padding: 14px;
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.nav-button:hover {
+  background: #005fcc;
+  transform: translateY(-2px);
+}
+
+.nav-button.prev {
+  background: #ccc;
+  color: #333;
+}
+
+.nav-button.prev:hover {
+  background: #bbb;
+}
+
+/* ==============
+   Summary Cards
+================= */
+.summary-card {
+  background: #f0f2f5;
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 15px;
+  border: 1px solid #e1e4e8;
+}
+
+/* ==============
+   Animations
+================= */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.container:not(.hidden) {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .square {
+    width: 90px;
+    height: 90px;
+  }
+  .rect {
+    width: calc(50% - 6px);
+    height: 70px;
+  }
+  h1 {
+    font-size: 18px;
+  }
+  .container {
+    padding: 24px 18px 32px;
+  }
+}

@@ -1,12 +1,12 @@
 /* ==============
-   Global styles
+   Global styles (Dark Theme)
 ================= */
 :root {
-  --bg: #f7f8fa;
-  --card: #fff;
-  --text: #222;
-  --accent: #007bff;
-  --stroke: #d1d5db;
+  --bg: #0b0b0b;
+  --card: #121212;
+  --text: #f5f5f5;
+  --accent: #3b82f6;
+  --stroke: #2f2f2f;
   --transition: 0.3s ease;
 }
 
@@ -35,7 +35,7 @@ body {
   max-width: 420px;
   background: var(--card);
   border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
   padding: 32px 24px 40px;
   position: relative;
   opacity: 1;
@@ -69,13 +69,13 @@ body {
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  color: #777;
+  color: #888;
   transition: all var(--transition);
 }
 
 .dot.active {
   background: var(--accent);
-  color: white;
+  color: #fff;
   border-color: var(--accent);
   transform: scale(1.1);
 }
@@ -88,6 +88,7 @@ h1 {
   font-weight: 700;
   margin: 16px 0 14px;
   text-align: center;
+  color: var(--text);
 }
 
 /* ==============
@@ -114,19 +115,20 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--text);
 }
 
 .card:hover {
   transform: translateY(-4px);
   border-color: var(--accent);
-  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
 }
 
 .card.selected {
   background: var(--accent);
   color: #fff;
   border-color: var(--accent);
-  box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+  box-shadow: 0 0 16px rgba(59, 130, 246, 0.4);
 }
 
 .square {
@@ -140,130 +142,3 @@ h1 {
 }
 
 .thin {
-  width: 100%;
-  height: 60px;
-}
-
-/* ==============
-   Pills (labels)
-================= */
-.pill {
-  font-size: 15px;
-  font-weight: 500;
-}
-
-.pill.small {
-  font-size: 14px;
-}
-
-/* ==============
-   Slider (age)
-================= */
-.slider-section {
-  text-align: center;
-  margin-bottom: 24px;
-}
-
-.slider-section label {
-  display: block;
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-input[type="range"] {
-  width: 100%;
-  cursor: pointer;
-}
-
-.age-labels {
-  display: flex;
-  justify-content: space-between;
-  font-size: 14px;
-  margin-top: 6px;
-  color: #666;
-}
-
-/* ==============
-   Buttons
-================= */
-.buttons {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.nav-button {
-  flex: 1;
-  background: var(--accent);
-  color: white;
-  font-weight: 600;
-  border: none;
-  border-radius: 12px;
-  padding: 14px;
-  cursor: pointer;
-  transition: background var(--transition), transform var(--transition);
-}
-
-.nav-button:hover {
-  background: #005fcc;
-  transform: translateY(-2px);
-}
-
-.nav-button.prev {
-  background: #ccc;
-  color: #333;
-}
-
-.nav-button.prev:hover {
-  background: #bbb;
-}
-
-/* ==============
-   Summary Cards
-================= */
-.summary-card {
-  background: #f0f2f5;
-  border-radius: 12px;
-  padding: 12px 14px;
-  margin-bottom: 8px;
-  font-weight: 500;
-  font-size: 15px;
-  border: 1px solid #e1e4e8;
-}
-
-/* ==============
-   Animations
-================= */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.container:not(.hidden) {
-  animation: fadeInUp 0.5s ease forwards;
-}
-
-/* Responsive */
-@media (max-width: 480px) {
-  .square {
-    width: 90px;
-    height: 90px;
-  }
-  .rect {
-    width: calc(50% - 6px);
-    height: 70px;
-  }
-  h1 {
-    font-size: 18px;
-  }
-  .container {
-    padding: 24px 18px 32px;
-  }
-}

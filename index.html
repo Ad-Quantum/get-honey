@@ -1,146 +1,215 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Interactive Selection</title>
+  <title>AI Character Builder</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
   <style>
-    .selected{ background: var(--stroke); color: var(--bg); }
-    .summary-card{ padding:12px 16px; border:1px solid var(--stroke); border-radius:12px; margin:6px 0; }
+    .selected { background: var(--stroke); color: var(--bg); }
+    .summary-card { padding:12px 16px; border:1px solid var(--stroke); border-radius:12px; margin:6px 0; }
+    .hidden { display: none; }
   </style>
 </head>
 <body>
-
-  <!-- Страницы 1-5: предыдущие страницы ... -->
-
-  <!-- Страница 1 -->
+  <!-- ======== Page 1 ======== -->
   <main id="page1" class="container" role="main">
     <div class="status">
-      <div class="dot active">1</div>
-      <div class="dot">2</div>
-      <div class="dot">3</div>
-      <div class="dot">4</div>
-      <div class="dot">5</div>
-      <div class="dot">6</div>
+      <div class="dot active">1</div><div class="dot">2</div><div class="dot">3</div><div class="dot">4</div><div class="dot">5</div><div class="dot">6</div>
     </div>
     <h1>Choose Style</h1>
-    <section class="cards" aria-label="Styles">
-      <a href="#page2" class="card" data-summary="style"><span class="pill">Realistic</span></a>
-      <a href="#page2" class="card" data-summary="style"><span class="pill">Anime</span></a>
+    <section class="cards" data-page="1">
+      <div class="card" data-key="style" data-value="Realistic"><span class="pill">Realistic</span></div>
+      <div class="card" data-key="style" data-value="Anime"><span class="pill">Anime</span></div>
     </section>
+    <div class="buttons">
+      <button class="nav-button next">Next</button>
+    </div>
   </main>
 
-  <!-- Страница 2 -->
-  <main id="page2" class="container" role="main" style="display:none;">
+  <!-- ======== Page 2 ======== -->
+  <main id="page2" class="container hidden" role="main">
     <div class="status">
-      <div class="dot">1</div>
-      <div class="dot active">2</div>
-      <div class="dot">3</div>
-      <div class="dot">4</div>
-      <div class="dot">5</div>
-      <div class="dot">6</div>
+      <div class="dot">1</div><div class="dot active">2</div><div class="dot">3</div><div class="dot">4</div><div class="dot">5</div><div class="dot">6</div>
     </div>
     <h1>Choose Ethnicity</h1>
-    <section class="ethnicity-options" data-summary="ethnicity">
-      <div class="ethnicity-card"><span class="pill small">White</span></div>
-      <div class="ethnicity-card"><span class="pill small">Asian</span></div>
-      <div class="ethnicity-card"><span class="pill small">Arab</span></div>
-      <div class="ethnicity-card"><span class="pill small">Black</span></div>
-      <div class="ethnicity-card"><span class="pill small">Latina</span></div>
+    <section class="list-vertical" data-page="2">
+      <div class="card thin" data-key="ethnicity" data-value="White"><span class="pill small">White</span></div>
+      <div class="card thin" data-key="ethnicity" data-value="Asian"><span class="pill small">Asian</span></div>
+      <div class="card thin" data-key="ethnicity" data-value="Arab"><span class="pill small">Arab</span></div>
+      <div class="card thin" data-key="ethnicity" data-value="Black"><span class="pill small">Black</span></div>
+      <div class="card thin" data-key="ethnicity" data-value="Latina"><span class="pill small">Latina</span></div>
     </section>
     <div class="slider-section">
-      <label for="age-range">Age</label>
-      <input type="range" id="age-range" min="18" max="55" value="18">
+      <label>Age</label>
+      <input type="range" id="age" min="18" max="55" value="18" />
       <div class="age-labels"><span>18+</span><span>55+</span></div>
     </div>
     <div class="buttons">
-      <button class="nav-button" id="prevBtn">Previous</button>
-      <button class="nav-button" id="nextBtn">Next</button>
+      <button class="nav-button prev">Previous</button>
+      <button class="nav-button next">Next</button>
     </div>
   </main>
 
-  <!-- Страница 3,4,5 аналогично ... -->
-
-  <!-- Страница 6: Summary -->
-  <main id="page6" class="container" role="main" style="display:none;">
+  <!-- ======== Page 3 ======== -->
+  <main id="page3" class="container hidden" role="main">
     <div class="status">
-      <div class="dot">1</div>
-      <div class="dot">2</div>
-      <div class="dot">3</div>
-      <div class="dot">4</div>
-      <div class="dot">5</div>
-      <div class="dot active">6</div>
+      <div class="dot">1</div><div class="dot">2</div><div class="dot active">3</div><div class="dot">4</div><div class="dot">5</div><div class="dot">6</div>
+    </div>
+    <h1>Choose Body Type</h1>
+    <section class="grid" data-page="3" data-key="body">
+      <div class="card square" data-value="Slim"><span class="pill small">Slim</span></div>
+      <div class="card square" data-value="Athletic"><span class="pill small">Athletic</span></div>
+      <div class="card square" data-value="Voluptuous"><span class="pill small">Voluptuous</span></div>
+      <div class="card square" data-value="Curvy"><span class="pill small">Curvy</span></div>
+    </section>
+
+    <h1>Choose Breast Size</h1>
+    <section class="grid" data-key="breast">
+      <div class="card square" data-value="Small"><span class="pill small">Small</span></div>
+      <div class="card square" data-value="Medium"><span class="pill small">Medium</span></div>
+      <div class="card square" data-value="Large"><span class="pill small">Large</span></div>
+      <div class="card square" data-value="Huge"><span class="pill small">Huge</span></div>
+    </section>
+
+    <h1>Choose Butt Size</h1>
+    <section class="grid" data-key="butt">
+      <div class="card square" data-value="Skinny"><span class="pill small">Skinny</span></div>
+      <div class="card square" data-value="Medium"><span class="pill small">Medium</span></div>
+      <div class="card square" data-value="Athletic"><span class="pill small">Athletic</span></div>
+      <div class="card square" data-value="Large"><span class="pill small">Large</span></div>
+    </section>
+
+    <div class="buttons">
+      <button class="nav-button prev">Previous</button>
+      <button class="nav-button next">Next</button>
+    </div>
+  </main>
+
+  <!-- ======== Page 4 ======== -->
+  <main id="page4" class="container hidden" role="main">
+    <div class="status">
+      <div class="dot">1</div><div class="dot">2</div><div class="dot">3</div><div class="dot active">4</div><div class="dot">5</div><div class="dot">6</div>
+    </div>
+    <h1>Choose Hair Style</h1>
+    <section class="grid six" data-key="hairStyle">
+      <div class="card square" data-value="Straight"><span class="pill small">Straight</span></div>
+      <div class="card square" data-value="Short"><span class="pill small">Short</span></div>
+      <div class="card square" data-value="Braids"><span class="pill small">Braids</span></div>
+      <div class="card square" data-value="Bun"><span class="pill small">Bun</span></div>
+      <div class="card square" data-value="Curly"><span class="pill small">Curly</span></div>
+      <div class="card square" data-value="Ponytail"><span class="pill small">Ponytail</span></div>
+    </section>
+
+    <h1>Choose Hair Color</h1>
+    <section class="grid five" data-key="hairColor">
+      <div class="card square" data-value="Blondie"><span class="pill small">Blondie</span></div>
+      <div class="card square" data-value="Brunette"><span class="pill small">Brunette</span></div>
+      <div class="card square" data-value="Black"><span class="pill small">Black</span></div>
+      <div class="card square" data-value="Pink"><span class="pill small">Pink</span></div>
+      <div class="card square" data-value="Redhead"><span class="pill small">Redhead</span></div>
+    </section>
+
+    <h1>Choose Eye Color</h1>
+    <section class="grid three" data-key="eyeColor">
+      <div class="card square" data-value="Blue"><span class="pill small">Blue</span></div>
+      <div class="card square" data-value="Brown"><span class="pill small">Brown</span></div>
+      <div class="card square" data-value="Green"><span class="pill small">Green</span></div>
+    </section>
+
+    <div class="buttons">
+      <button class="nav-button prev">Previous</button>
+      <button class="nav-button next">Next</button>
+    </div>
+  </main>
+
+  <!-- ======== Page 5 ======== -->
+  <main id="page5" class="container hidden" role="main">
+    <div class="status">
+      <div class="dot">1</div><div class="dot">2</div><div class="dot">3</div><div class="dot">4</div><div class="dot active">5</div><div class="dot">6</div>
+    </div>
+    <h1>Choose Voice</h1>
+    <section class="grid" data-key="voice">
+      <div class="card square" data-value="Voice 1 Innocent"><span class="pill small">Voice 1 Innocent</span></div>
+      <div class="card square" data-value="Voice 2 Standard"><span class="pill small">Voice 2 Standard</span></div>
+      <div class="card square" data-value="Voice 3 Sedustress"><span class="pill small">Sedustress</span></div>
+      <div class="card square" data-value="Voice 4 Dominant"><span class="pill small">Voice 4 Dominant</span></div>
+    </section>
+
+    <h1>Choose Relationship</h1>
+    <section class="grid four" data-key="relationship">
+      <div class="card rect" data-value="Step Sister"><span class="pill small">Step Sister</span></div>
+      <div class="card rect" data-value="Step Mom"><span class="pill small">Step Mom</span></div>
+      <div class="card rect" data-value="Girlfriend"><span class="pill small">Girlfriend</span></div>
+      <div class="card rect" data-value="Sex Friend"><span class="pill small">Sex Friend</span></div>
+    </section>
+
+    <div class="buttons">
+      <button class="nav-button prev">Previous</button>
+      <button class="nav-button next">Next</button>
+    </div>
+  </main>
+
+  <!-- ======== Page 6 ======== -->
+  <main id="page6" class="container hidden" role="main">
+    <div class="status">
+      <div class="dot">1</div><div class="dot">2</div><div class="dot">3</div><div class="dot">4</div><div class="dot">5</div><div class="dot active">6</div>
     </div>
     <h1>Summary</h1>
-    <section class="summary-grid">
-      <div class="summary-card">Style: <span id="summary-style"></span></div>
-      <div class="summary-card">Ethnicity: <span id="summary-ethnicity"></span></div>
-      <div class="summary-card">Body Type: <span id="summary-body"></span></div>
-      <div class="summary-card">Breast Size: <span id="summary-breast"></span></div>
-      <div class="summary-card">Butt Size: <span id="summary-butt"></span></div>
-      <div class="summary-card">Hair Style: <span id="summary-hair-style"></span></div>
-      <div class="summary-card">Hair Color: <span id="summary-hair-color"></span></div>
-      <div class="summary-card">Eye Color: <span id="summary-eye"></span></div>
-      <div class="summary-card">Voice: <span id="summary-voice"></span></div>
-      <div class="summary-card">Relationship: <span id="summary-relationship"></span></div>
-    </section>
+    <section id="summary"></section>
     <div class="buttons">
-      <button class="nav-button" id="prev6Btn">Previous</button>
-      <button class="nav-button" id="finalBtn">Bring My AI to Live</button>
+      <button class="nav-button prev">Previous</button>
+      <button class="nav-button finish">Bring My AI to Live</button>
     </div>
   </main>
 
   <script>
-    function makeSelectable(sectionSelector, summaryId){
-      const section = document.querySelector(sectionSelector);
-      if(!section) return;
-      section.querySelectorAll('.selection-card, .ethnicity-card, .card').forEach(el=>{
-        el.addEventListener('click', ()=>{
-          section.querySelectorAll('.selection-card, .ethnicity-card, .card').forEach(e=>e.classList.remove('selected'));
-          el.classList.add('selected');
-          if(summaryId) document.getElementById(summaryId).textContent = el.innerText.trim();
-        });
+    const pages = document.querySelectorAll('main');
+    let current = 0;
+    const choices = {};
+
+    // Навигация
+    function showPage(i){
+      pages.forEach((p,idx)=>p.classList.toggle('hidden', idx!==i));
+      current = i;
+      if(i===5) updateSummary();
+    }
+
+    document.querySelectorAll('.next').forEach(btn=>btn.addEventListener('click',()=>{
+      if(current < pages.length-1) showPage(current+1);
+    }));
+
+    document.querySelectorAll('.prev').forEach(btn=>btn.addEventListener('click',()=>{
+      if(current > 0) showPage(current-1);
+    }));
+
+    document.querySelector('.finish').addEventListener('click',()=>{
+      alert('Your AI setup is complete!');
+    });
+
+    // Выбор
+    document.querySelectorAll('.card').forEach(card=>{
+      card.addEventListener('click',()=>{
+        const parent = card.closest('section');
+        parent.querySelectorAll('.card').forEach(c=>c.classList.remove('selected'));
+        card.classList.add('selected');
+        const key = card.dataset.key || parent.dataset.key;
+        if(key) choices[key] = card.dataset.value;
       });
+    });
+
+    // Итог
+    function updateSummary(){
+      const container = document.getElementById('summary');
+      container.innerHTML = '';
+      for(const [k,v] of Object.entries(choices)){
+        const div = document.createElement('div');
+        div.className = 'summary-card';
+        div.textContent = `${k}: ${v}`;
+        container.appendChild(div);
+      }
     }
-
-    // Применяем выделение и связываем с Summary
-    makeSelectable('#page1 .cards','summary-style');
-    makeSelectable('#page2 .ethnicity-options','summary-ethnicity');
-    document.querySelectorAll('#page3 .selection-grid').forEach((_,i)=>{
-      const ids=['summary-body','summary-breast','summary-butt'];
-      makeSelectable(`#page3 .selection-grid:nth-of-type(${i+1})`,ids[i]);
-    });
-    document.querySelectorAll('#page4 .selection-grid').forEach((_,i)=>{
-      const ids=['summary-hair-style','summary-hair-color','summary-eye'];
-      makeSelectable(`#page4 .selection-grid:nth-of-type(${i+1})`,ids[i]);
-    });
-    document.querySelectorAll('#page5 .selection-grid').forEach((_,i)=>{
-      const ids=['summary-voice','summary-relationship'];
-      makeSelectable(`#page5 .selection-grid:nth-of-type(${i+1})`,ids[i]);
-    });
-
-    // Навигация между страницами
-    const pages=['page1','page2','page3','page4','page5','page6'];
-    function showPage(showId){
-      pages.forEach(id=>document.getElementById(id).style.display='none');
-      document.getElementById(showId).style.display='flex';
-    }
-
-    // Пример навигации кнопок (подобрать ID на каждой странице)
-    document.querySelectorAll('a[href^="#page2"]').forEach(l=>l.addEventListener('click',e=>{e.preventDefault();showPage('page2');}));
-    document.getElementById('prevBtn').addEventListener('click',()=>showPage('page1'));
-    document.getElementById('nextBtn').addEventListener('click',()=>showPage('page3'));
-    document.getElementById('prev3Btn').addEventListener('click',()=>showPage('page2'));
-    document.getElementById('next3Btn').addEventListener('click',()=>showPage('page4'));
-    document.getElementById('prev4Btn').addEventListener('click',()=>showPage('page3'));
-    document.getElementById('next4Btn').addEventListener('click',()=>showPage('page5'));
-    document.getElementById('prev5Btn').addEventListener('click',()=>showPage('page4'));
-    document.getElementById('next5Btn').addEventListener('click',()=>showPage('page6'));
-    document.getElementById('prev6Btn').addEventListener('click',()=>showPage('page5'));
-    document.getElementById('finalBtn').addEventListener('click',()=>alert('AI activated!'));
   </script>
-
 </body>
 </html>

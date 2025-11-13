@@ -147,7 +147,6 @@ h1 {
 
 /* ===== 2 page ===== */
 
-/* ======= Страница 2: Ethnicity ======= */
 .ethnicity-options {
   display: flex;
   flex-direction: column;
@@ -176,18 +175,18 @@ h1 {
   transition: transform 0.3s ease;
 }
 
-/* Подсветка выбранной карточки */
+/* Light card */
 .ethnicity-card.active {
   border: 3px solid #ff4fa3;
   box-shadow: 0 0 20px rgba(255, 79, 163, 0.6);
 }
 
-/* Эффект наведения */
+/* Effect */
 .ethnicity-card:hover img {
   transform: scale(1.02);
 }
 
-/* Метка с названием Ethnicity */
+/* tag name Ethnicity */
 .ethnicity-label {
   position: absolute;
   bottom: 15px;

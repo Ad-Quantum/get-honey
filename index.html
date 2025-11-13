@@ -267,5 +267,95 @@
       });
     });
   </script>
+<script>
+  // ======== Navigation pages ========
+
+  const pages = document.querySelectorAll(".page");
+  const dots = document.querySelectorAll(".dot");
+  const buttonsNext = document.querySelectorAll(".next");
+  const buttonsPrev = document.querySelectorAll(".prev");
+  const styleCards = document.querySelectorAll(".style-card");
+
+  // View page on ID
+  function showPage(id) {
+    pages.forEach(p => p.classList.remove("active"));
+    const next = document.getElementById(id);
+    if (next) {
+      next.classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }
+
+  // Buttons next
+  buttonsNext.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const next = btn.dataset.next;
+      if (next) showPage(next);
+    });
+  });
+  buttonsPrev.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const prev = btn.dataset.prev;
+      if (prev) showPage(prev);
+    });
+  });
+
+  // Go to click
+  styleCards.forEach(card => {
+    card.addEventListener("click", () => {
+      const next = card.dataset.next;
+      if (next) showPage(next);
+    });
+  });
+
+  // ======== Edit choose Ethnicity ========
+
+  const ethnicityCards = document.querySelectorAll(".ethnicity-card");
+  const userSelection = {}; // объект, где храним все выборы
+
+  ethnicityCards.forEach(card => {
+    card.addEventListener("click", () => {
+      ethnicityCards.forEach(c => c.classList.remove("active"));
+      card.classList.add("active");
+
+      // Получаем название выбора (например, White, Asian и т.д.)
+      const choice = card.querySelector(".ethnicity-label").textContent.trim();
+      userSelection.ethnicity = choice;
+
+      console.log("Выбрана этничность:", choice);
+      localStorage.setItem("userSelection", JSON.stringify(userSelection));
+    });
+  });
+
+  // ======== Вывод выбора на странице Summary ========
+
+  const summaryContainer = document.getElementById("summary");
+
+  function renderSummary() {
+    const saved = JSON.parse(localStorage.getItem("userSelection") || "{}");
+    if (!summaryContainer) return;
+
+    summaryContainer.innerHTML = "";
+
+    if (Object.keys(saved).length === 0) {
+      summaryContainer.innerHTML = `<p style="opacity:0.7">No selections made yet.</p>`;
+      return;
+    }
+
+    Object.entries(saved).forEach(([key, value]) => {
+      const item = document.createElement("div");
+      item.classList.add("summary-item");
+      item.innerHTML = `<strong>${key}:</strong> ${value}`;
+      summaryContainer.appendChild(item);
+    });
+  }
+
+  // Если открыта страница Summary — отрисовать данные
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.getElementById("page6")?.classList.contains("active")) {
+      renderSummary();
+    }
+  });
+</script>
 </body>
 </html>

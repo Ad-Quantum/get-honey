@@ -1,373 +1,181 @@
-/* =========================================
-   GLOBAL STYLES
-========================================= */
+/* ====== GLOBAL ====== */
 
-:root {
-  --bg: #000000;
-  --text: #ffffff;
-  --accent: #ff4fa3;
-  --border: rgba(255, 255, 255, 0.15);
-  --card-bg: rgba(255, 255, 255, 0.04);
-  --pill-bg: rgba(0, 0, 0, 0.6);
+body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-html, body {
-  margin: 0;
-  padding: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: "Inter", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  height: 100%;
-}
-
-/* Center wrapper for each page */
 .page {
-  display: none;
-  padding: 40px 20px;
-  max-width: 1100px;
-  margin: 0 auto;
+    display: none;
+    width: 100%;
+    min-height: 100vh;
+    padding: 25px;
+    box-sizing: border-box;
 }
 
 .page.active {
-  display: block;
+    display: block;
 }
 
-/* =========================================
-   STATUS BAR
-========================================= */
+/* ====== TITLES ====== */
+
+h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+/* ====== STATUS BAR ====== */
 
 .status-bar {
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-  margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+    gap: 10px;
 }
 
-.status-bar .dot {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 2px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  font-size: 14px;
-  opacity: 0.6;
-  transition: 0.3s ease;
+.status-step {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2px solid #444;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #666;
+    font-size: 14px;
+    font-weight: 600;
 }
 
-.status-bar .dot.active {
-  border-color: var(--accent);
-  color: var(--accent);
-  opacity: 1;
+.status-step.active {
+    border-color: #ff3b7f;
+    color: #ff3b7f;
 }
 
-/* =========================================
-   TITLES
-========================================= */
+/* ========================= */
+/* ====== GRID SYSTEM ====== */
+/* ========================= */
 
-h1 {
-  text-align: center;
-  font-size: 28px;
-  margin-bottom: 35px;
-  font-weight: 700;
-  color: #fff;
+.blocks-grid {
+    display: grid;
+    gap: 12px;
 }
 
-.section-title {
-  font-size: 22px;
-  font-weight: 700;
-  margin: 40px 0 20px;
-}
-
-/* =========================================
-   UNIVERSAL CARD STYLES
-========================================= */
-
-/* rectangular cards */
-.card-rect {
-  position: relative;
-  width: 100%;
-  border: 2px solid var(--border);
-  border-radius: 20px;
-  overflow: hidden;
-  cursor: pointer;
-  background: var(--card-bg);
-  transition: 0.25s ease;
-}
-
-.card-rect:hover {
-  border-color: var(--accent);
-  transform: translateY(-2px);
-}
-
-/* square cards */
-.card-square {
-  position: relative;
-  width: 100%;
-  padding-top: 100%;
-  border: 2px solid var(--border);
-  border-radius: 20px;
-  overflow: hidden;
-  background: var(--card-bg);
-  cursor: pointer;
-  transition: 0.25s ease;
-}
-
-.card-square:hover {
-  border-color: var(--accent);
-  transform: translateY(-3px);
-}
-
-/* card content image */
-.card-rect img,
-.card-square img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* active card */
-.card-active {
-  border-color: var(--accent) !important;
-  box-shadow: 0 0 16px rgba(255, 79, 163, 0.5);
-}
-
-/* pill label */
-.pill {
-  position: absolute;
-  bottom: 16px;
-  right: 20px;
-  padding: 8px 16px;
-  font-size: 15px;
-  font-weight: 600;
-  background: var(--pill-bg);
-  color: #fff;
-  border-radius: 20px;
-  backdrop-filter: blur(6px);
-  transition: background 0.25s ease;
-}
-
-.card-rect:hover .pill,
-.card-square:hover .pill {
-  background: var(--accent);
-}
-
-/* =========================================
-   PAGE 1 — CHOOSE STYLE
-========================================= */
-
-.style-grid {
-  display: flex;
-  gap: 24px;
-  justify-content: center;
-}
-
-.style-card {
-  width: 42%;
-  border-radius: 24px;
-  overflow: hidden;
-  position: relative;
-  cursor: pointer;
-  border: 2px solid var(--border);
-  transition: 0.25s ease;
-}
-
-.style-card img {
-  width: 100%;
-  display: block;
-}
-
-.style-card:hover {
-  border-color: var(--accent);
-}
-
-/* =========================================
-   PAGE 2 — ETHNICITY
-========================================= */
-
-.ethnicity-section {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  width: 100%;
-  max-width: 850px;
-  margin: 0 auto;
-}
-
-.ethnicity-card {
-  position: relative;
-  width: 100%;
-  border-radius: 20px;
-  border: 2px solid var(--border);
-  overflow: hidden;
-  background: var(--card-bg);
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.ethnicity-card:hover {
-  border-color: var(--accent);
-  transform: translateY(-3px);
-}
-
-.ethnicity-card img {
-  width: 100%;
-  display: block;
-  height: auto;
-}
-
-/* Age slider */
-.age-slider {
-  width: 80%;
-  max-width: 600px;
-  margin: 40px auto 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.age-slider input[type="range"] {
-  flex: 1;
-  margin: 0 14px;
-  -webkit-appearance: none;
-  height: 4px;
-  background: var(--border);
-  border-radius: 4px;
-}
-
-.age-slider input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 20px;
-  height: 20px;
-  background: var(--accent);
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-/* =========================================
-   PAGE 3–4 — SQUARE OPTION GRIDS
-========================================= */
-
-.square-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-}
-
-.square-grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-}
-
-.square-grid-6 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-}
-
-/* =========================================
-   PAGE 5 — RELATIONSHIP (RECT GRID)
-========================================= */
-
-.rect-grid-2x2 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
-}
-
-/* =========================================
-   PAGE 6 — SUMMARY
-========================================= */
-
-.summary-box {
-  width: 100%;
-  background: var(--card-bg);
-  border: 2px solid var(--border);
-  border-radius: 20px;
-  padding: 25px;
-  margin-bottom: 20px;
-  font-size: 16px;
-}
-
-/* =========================================
-   NAVIGATION BUTTONS
-========================================= */
-
-.nav-buttons {
-  margin-top: 40px;
-  display: flex;
-  justify-content: center;
-  gap: 18px;
-}
-
-.nav-buttons button {
-  background: transparent;
-  border: 1px solid var(--border);
-  padding: 14px 42px;
-  font-size: 15px;
-  font-weight: 600;
-  border-radius: 12px;
-  cursor: pointer;
-  color: #fff;
-  transition: 0.25s ease;
-}
-
-.nav-buttons button:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-.nav-buttons .next {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
-}
-
-.nav-buttons .next:hover {
-  background: #ff69b4;
-}
-
-/* =========================================
-   RESPONSIVE
-========================================= */
-
-@media (max-width: 820px) {
-  .style-grid {
-    flex-direction: column;
-    width: 90%;
-    margin: 0 auto;
-  }
-
-  .square-grid,
-  .square-grid-3,
-  .square-grid-6 {
+/* Колонки */
+.blocks-2col {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .rect-grid-2x2 {
-    grid-template-columns: 1fr;
-  }
-
-  .ethnicity-card {
-    max-width: 100%;
-  }
 }
 
-@media (max-width: 500px) {
-  .square-grid,
-  .square-grid-3,
-  .square-grid-6 {
-    grid-template-columns: 1fr;
-  }
+.blocks-3col {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.blocks-4col {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* ============================== */
+/* ====== UNIVERSAL OPTION ====== */
+/* ============================== */
+
+/* Universal block wrapper */
+.option {
+    background: #1a1a1a;
+    border: 2px solid #2a2a2a;
+    border-radius: 14px;
+    padding: 0;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.25s;
+    text-align: center;
+}
+
+/* Hover + active */
+.option:hover {
+    border-color: #ff3b7f;
+}
+
+.option.selected {
+    border-color: #ff3b7f;
+    background: #26121b;
+}
+
+/* ============================== */
+/* ====== IMAGE HANDLING ======= */
+/* ============================== */
+
+/* Обработчик изображений: авторазмер в любых блоках */
+.option img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ============================== */
+/* ====== TEXT BLOCK OPTION ===== */
+/* ============================== */
+
+.option-text {
+    padding: 20px;
+    background: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+}
+
+/* ============================== */
+/* ====== BUTTONS ======= */
+/* ============================== */
+
+.buttons {
+    margin-top: 35px;
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.btn {
+    flex: 1;
+    background: #ff3b7f;
+    border: none;
+    padding: 16px 0;
+    border-radius: 14px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.btn:hover {
+    background: #ff5c94;
+}
+
+.btn.black {
+    background: #111;
+    border: 2px solid #2a2a2a;
+}
+
+.btn.black:hover {
+    border-color: #444;
+}
+
+/* ============================== */
+/* ====== SUMMARY PAGE ======= */
+/* ============================== */
+
+.summary-block {
+    background: #131313;
+    padding: 18px;
+    border-radius: 14px;
+    margin-bottom: 12px;
+    border: 1px solid #222;
+}
+
+.summary-title {
+    font-size: 18px;
+    opacity: 0.8;
 }

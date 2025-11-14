@@ -1,361 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Customization Wizard</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Configurator</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <!-- ===== PAGE 1 ===== -->
-  <section class="page active" id="page1">
-    <div class="status">
-      <div class="dot active">1</div>
-      <div class="dot">2</div>
-      <div class="dot">3</div>
-      <div class="dot">4</div>
-      <div class="dot">5</div>
-      <div class="dot">6</div>
+<!-- ========================================================= -->
+<!-- ======================== PAGE 1 ========================== -->
+<!-- ========================================================= -->
+
+<div class="page active" id="page1">
+
+    <div class="status-bar">
+        <div class="status-step active">1</div>
+        <div class="status-step">2</div>
+        <div class="status-step">3</div>
+        <div class="status-step">4</div>
+        <div class="status-step">5</div>
+        <div class="status-step">6</div>
     </div>
 
-    <h1>Choose Style</h1>
+    <h2>Choose Style</h2>
 
-    <div class="cards-row">
-      <div class="style-card" data-next="page2">
-        <img src="845430.mp4" alt="Realistic" />
-        <div class="label">Realistic</div>
-      </div>
-      <div class="style-card" data-next="page2">
-        <img src="845430-2.mp4" alt="Anime" />
-        <div class="label">Anime</div>
-      </div>
+    <div class="blocks-grid blocks-2col">
+        <div class="option" onclick="goPage(2)">
+            <img src="845430.mp4" alt="Realistic">
+            <div class="option-text">Realistic</div>
+        </div>
+
+        <div class="option" onclick="goPage(2)">
+            <img src="845430-2.mp4" alt="Anime">
+            <div class="option-text">Anime</div>
+        </div>
     </div>
-  </section>
+</div>
 
 
-  <!-- ===== PAGE 2 ===== -->
-  <section class="page" id="page2">
-  <div class="status">
-    <div class="dot">1</div>
-    <div class="dot active">2</div>
-    <div class="dot">3</div>
-    <div class="dot">4</div>
-    <div class="dot">5</div>
-    <div class="dot">6</div>
-  </div>
+<!-- ========================================================= -->
+<!-- ======================== PAGE 2 ========================== -->
+<!-- ========================================================= -->
 
-  <h1>Choose Ethnicity</h1>
+<div class="page" id="page2">
 
-  <div class="ethnicity-options">
-    <div class="ethnicity-card active" style="background-image: url('images/white.png')">
-      <div class="ethnicity-label">White</div>
-    </div>
-    <div class="ethnicity-card" style="background-image: url('images/ethnicity_asian.jpg')">
-      <div class="ethnicity-label">Asian</div>
-    </div>
-    <div class="ethnicity-card" style="background-image: url('images/ethnicity_arab.jpg')">
-      <div class="ethnicity-label">Arab</div>
-    </div>
-    <div class="ethnicity-card" style="background-image: url('images/ethnicity_black.jpg')">
-      <div class="ethnicity-label">Black</div>
-    </div>
-    <div class="ethnicity-card" style="background-image: url('images/ethnicity_latina.jpg')">
-      <div class="ethnicity-label">Latina</div>
-    </div>
-  </div>
-
-  <div class="age-slider">
-    <div class="age-labels">
-      <span>18+</span>
-      <span>55+</span>
-    </div>
-    <input type="range" min="18" max="55" value="25" class="slider" id="ageRange" />
-  </div>
-
-  <div class="buttons">
-    <button class="prev" data-prev="page1">Previous</button>
-    <button class="next" data-next="page3">Next</button>
-  </div>
-</section>
-
-
-  <!-- ===== PAGE 3 ===== -->
-  <section class="page" id="page3">
-    <div class="status">
-      <div class="dot">1</div>
-      <div class="dot">2</div>
-      <div class="dot active">3</div>
-      <div class="dot">4</div>
-      <div class="dot">5</div>
-      <div class="dot">6</div>
+    <div class="status-bar">
+        <div class="status-step">1</div>
+        <div class="status-step active">2</div>
+        <div class="status-step">3</div>
+        <div class="status-step">4</div>
+        <div class="status-step">5</div>
+        <div class="status-step">6</div>
     </div>
 
-    <h1>Choose Body Type</h1>
-    <div class="cards-grid grid-4">
-      <div class="option-card" style="background-image:url('images/slim.jpg')">Slim</div>
-      <div class="option-card" style="background-image:url('images/athletic.jpg')">Athletic</div>
-      <div class="option-card" style="background-image:url('images/voluptuous.jpg')">Voluptuous</div>
-      <div class="option-card" style="background-image:url('images/curvy.jpg')">Curvy</div>
-    </div>
+    <h2>Choose Ethnicity</h2>
 
-    <h1>Choose Breast Size</h1>
-    <div class="cards-grid grid-4">
-      <div class="option-card" style="background-image:url('images/small.jpg')">Small</div>
-      <div class="option-card" style="background-image:url('images/medium.jpg')">Medium</div>
-      <div class="option-card" style="background-image:url('images/large.jpg')">Large</div>
-      <div class="option-card" style="background-image:url('images/huge.jpg')">Huge</div>
-    </div>
-
-    <h1>Choose Butt Size</h1>
-    <div class="cards-grid grid-4">
-      <div class="option-card" style="background-image:url('images/skinny.jpg')">Skinny</div>
-      <div class="option-card" style="background-image:url('images/butt_medium.jpg')">Medium</div>
-      <div class="option-card" style="background-image:url('images/butt_athletic.jpg')">Athletic</div>
-      <div class="option-card" style="background-image:url('images/butt_large.jpg')">Large</div>
+    <div class="blocks-grid">
+        <div class="option"><img src="images/eth_white.jpg"><div class="option-text">White</div></div>
+        <div class="option"><img src="images/eth_asian.jpg"><div class="option-text">Asian</div></div>
+        <div class="option"><img src="images/eth_arab.jpg"><div class="option-text">Arab</div></div>
+        <div class="option"><img src="images/eth_black.jpg"><div class="option-text">Black</div></div>
+        <div class="option"><img src="images/eth_latina.jpg"><div class="option-text">Latina</div></div>
     </div>
 
     <div class="buttons">
-      <button class="prev" data-prev="page2">Previous</button>
-      <button class="next" data-next="page4">Next</button>
+        <button class="btn black" onclick="goPage(1)">Previous</button>
+        <button class="btn" onclick="goPage(3)">Next</button>
     </div>
-  </section>
+</div>
 
 
-  <!-- ===== PAGE 4 ===== -->
-  <section class="page" id="page4">
-    <div class="status">
-      <div class="dot">1</div>
-      <div class="dot">2</div>
-      <div class="dot">3</div>
-      <div class="dot active">4</div>
-      <div class="dot">5</div>
-      <div class="dot">6</div>
-    </div>
+<!-- ========================================================= -->
+<!-- ======================== PAGE 3 ========================== -->
+<!-- ========================================================= -->
 
-    <h1>Choose Hair Style</h1>
-    <div class="cards-grid grid-6">
-      <div class="option-card" style="background-image:url('images/straight.jpg')">Straight</div>
-      <div class="option-card" style="background-image:url('images/short.jpg')">Short</div>
-      <div class="option-card" style="background-image:url('images/braids.jpg')">Braids</div>
-      <div class="option-card" style="background-image:url('images/bun.jpg')">Bun</div>
-      <div class="option-card" style="background-image:url('images/curly.jpg')">Curly</div>
-      <div class="option-card" style="background-image:url('images/ponytail.jpg')">Ponytail</div>
+<div class="page" id="page3">
+
+    <div class="status-bar">
+        <div class="status-step">1</div>
+        <div class="status-step">2</div>
+        <div class="status-step active">3</div>
+        <div class="status-step">4</div>
+        <div class="status-step">5</div>
+        <div class="status-step">6</div>
     </div>
 
-    <h1>Choose Hair Color</h1>
-    <div class="cards-grid grid-5">
-      <div class="option-card" style="background-image:url('images/blondie.jpg')">Blondie</div>
-      <div class="option-card" style="background-image:url('images/brunette.jpg')">Brunette</div>
-      <div class="option-card" style="background-image:url('images/hair_black.jpg')">Black</div>
-      <div class="option-card" style="background-image:url('images/pink.jpg')">Pink</div>
-      <div class="option-card" style="background-image:url('images/redhead.jpg')">Redhead</div>
+    <h2>Choose Body Type</h2>
+    <div class="blocks-grid blocks-4col">
+        <div class="option"><img src="images/body_slm.jpg"><div class="option-text">Slim</div></div>
+        <div class="option"><img src="images/body_athletic.jpg"><div class="option-text">Athletic</div></div>
+        <div class="option"><img src="images/body_voluptuous.jpg"><div class="option-text">Voluptuous</div></div>
+        <div class="option"><img src="images/body_curvy.jpg"><div class="option-text">Curvy</div></div>
     </div>
 
-    <h1>Choose Eye Color</h1>
-    <div class="cards-grid grid-3">
-      <div class="option-card" style="background-image:url('images/blue_eyes.jpg')">Blue</div>
-      <div class="option-card" style="background-image:url('images/brown_eyes.jpg')">Brown</div>
-      <div class="option-card" style="background-image:url('images/green_eyes.jpg')">Green</div>
+    <h2 style="margin-top:28px;">Choose Breast Size</h2>
+    <div class="blocks-grid blocks-4col">
+        <div class="option"><img src="images/breast_s.jpg"><div class="option-text">Small</div></div>
+        <div class="option"><img src="images/breast_m.jpg"><div class="option-text">Medium</div></div>
+        <div class="option"><img src="images/breast_l.jpg"><div class="option-text">Large</div></div>
+        <div class="option"><img src="images/breast_xl.jpg"><div class="option-text">Huge</div></div>
     </div>
 
-    <div class="buttons">
-      <button class="prev" data-prev="page3">Previous</button>
-      <button class="next" data-next="page5">Next</button>
-    </div>
-  </section>
-
-
-  <!-- ===== PAGE 5 ===== -->
-  <section class="page" id="page5">
-    <div class="status">
-      <div class="dot">1</div>
-      <div class="dot">2</div>
-      <div class="dot">3</div>
-      <div class="dot">4</div>
-      <div class="dot active">5</div>
-      <div class="dot">6</div>
-    </div>
-
-    <h1>Choose Voice</h1>
-    <div class="cards-grid grid-4">
-      <div class="option-card" style="background-image:url('images/voice1.jpg')">Voice 1 Innocent</div>
-      <div class="option-card" style="background-image:url('images/voice2.jpg')">Voice 2 Standard</div>
-      <div class="option-card" style="background-image:url('images/voice3.jpg')">Seductress</div>
-      <div class="option-card" style="background-image:url('images/voice4.jpg')">Voice 4 Dominant</div>
-    </div>
-
-    <h1>Choose Relationship</h1>
-    <div class="cards-grid grid-2">
-      <div class="option-card" style="background-image:url('images/stepsister.jpg')">Step Sister</div>
-      <div class="option-card" style="background-image:url('images/stepmom.jpg')">Step Mom</div>
-      <div class="option-card" style="background-image:url('images/girlfriend.jpg')">Girlfriend</div>
-      <div class="option-card" style="background-image:url('images/sexfriend.jpg')">Sex Friend</div>
+    <h2 style="margin-top:28px;">Choose Butt Size</h2>
+    <div class="blocks-grid blocks-4col">
+        <div class="option"><img src="images/butt_s.jpg"><div class="option-text">Skinny</div></div>
+        <div class="option"><img src="images/butt_m.jpg"><div class="option-text">Medium</div></div>
+        <div class="option"><img src="images/butt_athletic.jpg"><div class="option-text">Athletic</div></div>
+        <div class="option"><img src="images/butt_l.jpg"><div class="option-text">Large</div></div>
     </div>
 
     <div class="buttons">
-      <button class="prev" data-prev="page4">Previous</button>
-      <button class="next" data-next="page6">Next</button>
+        <button class="btn black" onclick="goPage(2)">Previous</button>
+        <button class="btn" onclick="goPage(4)">Next</button>
     </div>
-  </section>
+</div>
 
 
-  <!-- ===== PAGE 6 ===== -->
-  <section class="page" id="page6">
-    <div class="status">
-      <div class="dot">1</div>
-      <div class="dot">2</div>
-      <div class="dot">3</div>
-      <div class="dot">4</div>
-      <div class="dot">5</div>
-      <div class="dot active">6</div>
+<!-- ========================================================= -->
+<!-- ======================== PAGE 4 ========================== -->
+<!-- ========================================================= -->
+
+<div class="page" id="page4">
+
+    <div class="status-bar">
+        <div class="status-step">1</div>
+        <div class="status-step">2</div>
+        <div class="status-step">3</div>
+        <div class="status-step active">4</div>
+        <div class="status-step">5</div>
+        <div class="status-step">6</div>
     </div>
 
-    <h1>Summary</h1>
-    <div id="summary">
-      <div class="summary-item"><strong>Style:</strong> Realistic</div>
-      <div class="summary-item"><strong>Ethnicity:</strong> Latina</div>
-      <div class="summary-item"><strong>Body Type:</strong> Athletic</div>
-      <div class="summary-item"><strong>Hair Style:</strong> Ponytail</div>
-      <div class="summary-item"><strong>Hair Color:</strong> Brunette</div>
-      <div class="summary-item"><strong>Eye Color:</strong> Green</div>
-      <div class="summary-item"><strong>Voice:</strong> Seductress</div>
-      <div class="summary-item"><strong>Relationship:</strong> Girlfriend</div>
+    <h2>Choose Hair Style</h2>
+    <div class="blocks-grid blocks-3col">
+        <div class="option"><img src="images/hair_straight.jpg"><div class="option-text">Straight</div></div>
+        <div class="option"><img src="images/hair_short.jpg"><div class="option-text">Short</div></div>
+        <div class="option"><img src="images/hair_braids.jpg"><div class="option-text">Braids</div></div>
+        <div class="option"><img src="images/hair_bun.jpg"><div class="option-text">Bun</div></div>
+        <div class="option"><img src="images/hair_curly.jpg"><div class="option-text">Curly</div></div>
+        <div class="option"><img src="images/hair_ponytail.jpg"><div class="option-text">Ponytail</div></div>
+    </div>
+
+    <h2 style="margin-top:28px;">Choose Hair Color</h2>
+    <div class="blocks-grid blocks-3col">
+        <div class="option"><img src="images/color_blonde.jpg"><div class="option-text">Blondie</div></div>
+        <div class="option"><img src="images/color_brunette.jpg"><div class="option-text">Brunette</div></div>
+        <div class="option"><img src="images/color_black.jpg"><div class="option-text">Black</div></div>
+        <div class="option"><img src="images/color_pink.jpg"><div class="option-text">Pink</div></div>
+        <div class="option"><img src="images/color_red.jpg"><div class="option-text">Redhead</div></div>
+    </div>
+
+    <h2 style="margin-top:28px;">Choose Eye Color</h2>
+    <div class="blocks-grid blocks-3col">
+        <div class="option"><img src="images/eye_blue.jpg"><div class="option-text">Blue</div></div>
+        <div class="option"><img src="images/eye_brown.jpg"><div class="option-text">Brown</div></div>
+        <div class="option"><img src="images/eye_green.jpg"><div class="option-text">Green</div></div>
     </div>
 
     <div class="buttons">
-      <button class="prev" data-prev="page5">Previous</button>
-      <button class="next">Bring My AI to Live</button>
+        <button class="btn black" onclick="goPage(3)">Previous</button>
+        <button class="btn" onclick="goPage(5)">Next</button>
     </div>
-  </section>
+</div>
 
-  <script>
-    const pages = document.querySelectorAll('.page');
-    const buttonsNext = document.querySelectorAll('.next');
-    const buttonsPrev = document.querySelectorAll('.prev');
-    const styleCards = document.querySelectorAll('.style-card');
 
-    function showPage(id) {
-      pages.forEach(page => page.classList.remove('active'));
-      const nextPage = document.getElementById(id);
-      if (nextPage) {
-        nextPage.classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        console.warn(`Page ${id} not found`);
-      }
-    }
+<!-- ========================================================= -->
+<!-- ======================== PAGE 5 ========================== -->
+<!-- ========================================================= -->
 
-    buttonsNext.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const next = btn.dataset.next;
-        if (next) showPage(next);
-      });
-    });
+<div class="page" id="page5">
 
-    buttonsPrev.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const prev = btn.dataset.prev;
-        if (prev) showPage(prev);
-      });
-    });
+    <div class="status-bar">
+        <div class="status-step">1</div>
+        <div class="status-step">2</div>
+        <div class="status-step">3</div>
+        <div class="status-step">4</div>
+        <div class="status-step active">5</div>
+        <div class="status-step">6</div>
+    </div>
 
-    styleCards.forEach(card => {
-      card.addEventListener('click', () => {
-        const next = card.dataset.next;
-        if (next) showPage(next);
-      });
-    });
-  </script>
+    <h2>Choose Voice</h2>
+    <div class="blocks-grid blocks-2col">
+        <div class="option"><img src="images/voice1.jpg"><div class="option-text">Voice 1 Innocent</div></div>
+        <div class="option"><img src="images/voice2.jpg"><div class="option-text">Voice 2 Standard</div></div>
+        <div class="option"><img src="images/voice3.jpg"><div class="option-text">Seductress</div></div>
+        <div class="option"><img src="images/voice4.jpg"><div class="option-text">Dominant</div></div>
+    </div>
+
+    <h2 style="margin-top:28px;">Choose Relationship</h2>
+    <div class="blocks-grid blocks-2col">
+        <div class="option"><img src="images/rel_stepsis.jpg"><div class="option-text">Step Sister</div></div>
+        <div class="option"><img src="images/rel_stepmom.jpg"><div class="option-text">Step Mom</div></div>
+        <div class="option"><img src="images/rel_gf.jpg"><div class="option-text">Girlfriend</div></div>
+        <div class="option"><img src="images/rel_friend.jpg"><div class="option-text">Sex Friend</div></div>
+    </div>
+
+    <div class="buttons">
+        <button class="btn black" onclick="goPage(4)">Previous</button>
+        <button class="btn" onclick="goPage(6)">Next</button>
+    </div>
+</div>
+
+
+<!-- ========================================================= -->
+<!-- ======================== PAGE 6 ========================== -->
+<!-- ========================================================= -->
+
+<div class="page" id="page6">
+
+    <div class="status-bar">
+        <div class="status-step">1</div>
+        <div class="status-step">2</div>
+        <div class="status-step">3</div>
+        <div class="status-step">4</div>
+        <div class="status-step">5</div>
+        <div class="status-step active">6</div>
+    </div>
+
+    <h2>Summary</h2>
+
+    <div class="summary-block">Your Style: ...</div>
+    <div class="summary-block">Ethnicity: ...</div>
+    <div class="summary-block">Body Type: ...</div>
+    <div class="summary-block">Hair Style: ...</div>
+    <div class="summary-block">Voice: ...</div>
+    <div class="summary-block">Relationship: ...</div>
+
+    <div class="buttons">
+        <button class="btn black" onclick="goPage(5)">Previous</button>
+        <button class="btn">Bring My AI to Live</button>
+    </div>
+</div>
+
+<!-- ========================================================= -->
+<!-- ==================== NAVIGATION JS ======================= -->
+<!-- ========================================================= -->
+
 <script>
-  // ======== Navigation pages ========
-
-  const pages = document.querySelectorAll(".page");
-  const dots = document.querySelectorAll(".dot");
-  const buttonsNext = document.querySelectorAll(".next");
-  const buttonsPrev = document.querySelectorAll(".prev");
-  const styleCards = document.querySelectorAll(".style-card");
-
-  // View page on ID
-  function showPage(id) {
-    pages.forEach(p => p.classList.remove("active"));
-    const next = document.getElementById(id);
-    if (next) {
-      next.classList.add("active");
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  }
-
-  // Buttons next
-  buttonsNext.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const next = btn.dataset.next;
-      if (next) showPage(next);
-    });
-  });
-  buttonsPrev.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const prev = btn.dataset.prev;
-      if (prev) showPage(prev);
-    });
-  });
-
-  // Go to click
-  styleCards.forEach(card => {
-    card.addEventListener("click", () => {
-      const next = card.dataset.next;
-      if (next) showPage(next);
-    });
-  });
-
-  // ======== Edit choose Ethnicity ========
-
-  const ethnicityCards = document.querySelectorAll(".ethnicity-card");
-  const userSelection = {}; // объект, где храним все выборы
-
-  ethnicityCards.forEach(card => {
-    card.addEventListener("click", () => {
-      ethnicityCards.forEach(c => c.classList.remove("active"));
-      card.classList.add("active");
-
-      // Получаем название выбора (например, White, Asian и т.д.)
-      const choice = card.querySelector(".ethnicity-label").textContent.trim();
-      userSelection.ethnicity = choice;
-
-      console.log("Выбрана этничность:", choice);
-      localStorage.setItem("userSelection", JSON.stringify(userSelection));
-    });
-  });
-
-  // ======== Вывод выбора на странице Summary ========
-
-  const summaryContainer = document.getElementById("summary");
-
-  function renderSummary() {
-    const saved = JSON.parse(localStorage.getItem("userSelection") || "{}");
-    if (!summaryContainer) return;
-
-    summaryContainer.innerHTML = "";
-
-    if (Object.keys(saved).length === 0) {
-      summaryContainer.innerHTML = `<p style="opacity:0.7">No selections made yet.</p>`;
-      return;
-    }
-
-    Object.entries(saved).forEach(([key, value]) => {
-      const item = document.createElement("div");
-      item.classList.add("summary-item");
-      item.innerHTML = `<strong>${key}:</strong> ${value}`;
-      summaryContainer.appendChild(item);
-    });
-  }
-
-  // Если открыта страница Summary — отрисовать данные
-  document.addEventListener("DOMContentLoaded", () => {
-    if (document.getElementById("page6")?.classList.contains("active")) {
-      renderSummary();
-    }
-  });
+function goPage(n) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page' + n).classList.add('active');
+}
 </script>
+
 </body>
 </html>

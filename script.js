@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // КОНФИГУРАЦИЯ И СОСТОЯНИЕ
     // =====================
     let currentPage = 1;
-    let currentAudio = null; // Переменная для хранения текущего аудио
+    let currentAudio = null;
     
     const state = {
         style: null, ethnicity: null, bodyType: null, breast: null,
@@ -49,12 +49,15 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.addEventListener('click', prevPage);
         });
         
+        // --- ВОТ ИЗМЕНЕННАЯ ЧАСТЬ ---
         document.querySelectorAll('[data-action="generate"]').forEach(btn => {
-    btn.addEventListener('click', () => {
-        // Переход по ссылке
-        window.location.href = "https://get-honey.today/standalone-paywall";
-    });
-});
+            btn.addEventListener('click', () => {
+                // Переход по ссылке
+                window.location.href = "https://get-honey.today/standalone-paywall";
+            });
+        });
+        // -----------------------------
+    }
 
     // =====================
     // ЛОГИКА ВЫБОРА И АУДИО
@@ -81,12 +84,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function playAudio(src) {
-        // Если что-то уже играет — останавливаем
         if (currentAudio) {
             currentAudio.pause();
             currentAudio.currentTime = 0;
         }
-        // Создаем и запускаем новое
         currentAudio = new Audio(src);
         currentAudio.play().catch(e => console.log("Audio play error:", e));
     }
@@ -95,7 +96,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // НАВИГАЦИЯ
     // =====================
     function nextPage() {
-        // Останавливаем звук при уходе со страницы
         if (currentAudio) {
             currentAudio.pause();
             currentAudio = null;
@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const min = range.min || 18;
             const max = range.max || 55;
             const percent = (val - min) / (max - min);
-            const offset = percent * (range.offsetWidth - 20); 
+            // Немного подправляем позиционирование бабла
             bubble.style.left = `calc(${percent * 100}% + (${10 - percent * 20}px))`; 
             bubble.textContent = val + "+";
             state.age = val;
@@ -212,6 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!val) return;
 
             const originalBlock = document.querySelector(`.select-block[data-group="${field.key}"][data-label="${val}"]`);
+            // Если блок не найден (такое бывает при быстрой разработке), пропускаем
             if (!originalBlock) return;
 
             const card = document.createElement('div');

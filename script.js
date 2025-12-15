@@ -50,9 +50,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         
         document.querySelectorAll('[data-action="generate"]').forEach(btn => {
-            btn.addEventListener('click', () => alert("AI Generation Started..."));
-        });
-    }
+    btn.addEventListener('click', () => {
+        // Переход по ссылке
+        window.location.href = "https://get-honey.today/standalone-paywall";
+    });
+});
 
     // =====================
     // ЛОГИКА ВЫБОРА И АУДИО

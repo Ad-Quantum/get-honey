@@ -49,14 +49,23 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.addEventListener('click', prevPage);
         });
         
-        // --- ВОТ ИЗМЕНЕННАЯ ЧАСТЬ ---
         document.querySelectorAll('[data-action="generate"]').forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Переход по ссылке
-                window.location.href = "https://get-honey.today/standalone-paywall";
-            });
+    btn.addEventListener('click', () => {
+        // 1. Создаем ссылку, куда хотим отправить пользователя
+        const targetUrl = new URL("https://get-honey.today/standalone-paywall");
+        
+        // 2. Берем метки ("рюкзак") из текущего адреса, по которому человек пришел к нам
+        const currentParams = new URLSearchParams(window.location.search);
+        
+        // 3. Перекладываем каждую метку в новую ссылку
+        currentParams.forEach((value, key) => {
+            targetUrl.searchParams.set(key, value);
         });
-        // -----------------------------
+
+        // 4. Переходим по новой ссылке, которая уже содержит все метки
+        window.location.href = targetUrl.toString();
+    });
+});
     }
 
     // =====================

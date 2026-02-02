@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     init();
 
     function init() {
-        updatePageVisibility();
+        updatePageVisibility(); // Это сразу отправит событие quiz_step_1 при загрузке
         initAgeSlider();
         setupEventListeners();
     }
@@ -50,22 +50,31 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         
         document.querySelectorAll('[data-action="generate"]').forEach(btn => {
-    btn.addEventListener('click', () => {
-        // 1. Создаем ссылку, куда хотим отправить пользователя
-        const targetUrl = new URL("https://get-honey.today/standalone-paywall");
-        
-        // 2. Берем метки ("рюкзак") из текущего адреса, по которому человек пришел к нам
-        const currentParams = new URLSearchParams(window.location.search);
-        
-        // 3. Перекладываем каждую метку в новую ссылку
-        currentParams.forEach((value, key) => {
-            targetUrl.searchParams.set(key, value);
-        });
+            btn.addEventListener('click', () => {
+                
+                // [ANALYTICS] Отправка события завершения квиза
+                if (typeof gtag === 'function') {
+                    gtag('event', 'quiz_completed', {
+                        'event_category': 'conversion',
+                        'event_label': 'Main Button Click'
+                    });
+                }
 
-        // 4. Переходим по новой ссылке, которая уже содержит все метки
-        window.location.href = targetUrl.toString();
-    });
-});
+                // 1. Создаем ссылку, куда хотим отправить пользователя
+                const targetUrl = new URL("https://get-honey.today/standalone-paywall");
+                
+                // 2. Берем метки ("рюкзак") из текущего адреса
+                const currentParams = new URLSearchParams(window.location.search);
+                
+                // 3. Перекладываем каждую метку в новую ссылку
+                currentParams.forEach((value, key) => {
+                    targetUrl.searchParams.set(key, value);
+                });
+
+                // 4. Переходим по новой ссылке
+                window.location.href = targetUrl.toString();
+            });
+        });
     }
 
     // =====================
@@ -138,6 +147,15 @@ document.addEventListener("DOMContentLoaded", () => {
         if (currentPage === 6) {
             renderSummary();
         }
+
+        // [ANALYTICS] Отправка события шага (quiz_step_1, quiz_step_2, ...)
+        if (typeof gtag === 'function') {
+            gtag('event', `quiz_step_${currentPage}`, {
+                'event_category': 'quiz_progress',
+                'event_label': `Step ${currentPage}`
+            });
+            // console.log(`Analytics: quiz_step_${currentPage} sent`); // Раскомментируй для тестов
+        }
     }
 
     function updateStatusBar() {
@@ -152,6 +170,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // =====================
     function validateCurrentPage() {
         const activePage = document.querySelector(`.page#page${currentPage}`);
+        // Добавлена проверка на существование activePage, чтобы избежать ошибок при быстрой инициализации
+        if (!activePage) return; 
+
         const nextBtn = activePage.querySelector('[data-action="next"]');
         
         if (!nextBtn) return;
@@ -221,7 +242,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!val) return;
 
             const originalBlock = document.querySelector(`.select-block[data-group="${field.key}"][data-label="${val}"]`);
-            // Если блок не найден (такое бывает при быстрой разработке), пропускаем
+            // Если блок не найден, пропускаем
             if (!originalBlock) return;
 
             const card = document.createElement('div');
